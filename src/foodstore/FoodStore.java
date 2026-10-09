@@ -10,6 +10,8 @@ public class FoodStore {
 
     public static void main(String[] args) {
         
+        FoodRack myRack = new FoodRack();
+        
         String lf = "LIFO";
         Scanner scanner = new Scanner(System.in);
 
@@ -40,11 +42,58 @@ public class FoodStore {
             switch (option) {
 
                 case 1:
-                    System.out.println("Add Food selected");
+                    System.out.println("\n\n******************************");
+                    System.out.println("******************************");
+                    System.out.println("*******Add Food selected******");
+                    System.out.println("******************************");
+                    System.out.println("******************************");
+                    System.out.println("\n");
+                    
+                    
+                    
+
+                    int foodType;
+
+                    do {
+                        // FOOD TYPE
+                        System.out.println("\n");
+                        System.out.println("1. Burger");
+                        System.out.println("2. Pizza");
+                        System.out.println("3. Fries");
+                        System.out.println("4. Sandwich");
+                        System.out.println("5. Hotdog");
+                        System.out.println("6. Exit");
+                        System.out.print("Select food type (1-6): ");
+                        
+                        if (scanner.hasNextInt()) {
+                            foodType = scanner.nextInt();
+                            if (foodType < 1 || foodType > 6) {
+                                System.out.println("\n");
+                                System.out.println("---->Invalid option. Please try again<----");
+                            }
+                        } else {
+                            System.out.println("\n");
+                            System.out.println("---->lease enter valid option----");
+
+                            scanner.next(); //Clean the scanner
+                            foodType = 0;
+                        }
+
+                    } while (foodType < 1 || foodType > 6);
+                    
+                    if (foodType != 6){
+                        //Agregar elemento
+                    }
+                    
                     break;
 
                 case 2:
-                    System.out.println("Remove Food selected");
+                    System.out.println("\n\n******************************");
+                    System.out.println("******************************");
+                    System.out.println("*****Remove Food selected*****");
+                    System.out.println("******************************");
+                    System.out.println("******************************");
+                    System.out.println("\n");
                     break;
 
                 case 3:
