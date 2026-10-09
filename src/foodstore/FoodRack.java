@@ -87,7 +87,7 @@ public class FoodRack {
     public static class Burger extends Food {
 
         public Burger(double weight, LocalDate bestBeforeDate) {
-            super("Burger", weight, bestBeforeDate);
+            super(weight, bestBeforeDate);
         }
     }
 
@@ -95,7 +95,7 @@ public class FoodRack {
     public static class Pizza extends Food {
 
         public Pizza(double weight, LocalDate bestBeforeDate) {
-            super("Pizza", weight, bestBeforeDate);
+            super(weight, bestBeforeDate);
         }
     }
 
@@ -103,7 +103,7 @@ public class FoodRack {
     public static class Fries extends Food {
 
         public Fries(double weight, LocalDate bestBeforeDate) {
-            super("Fries", weight, bestBeforeDate);
+            super(weight, bestBeforeDate);
         }
     }
 
@@ -111,7 +111,7 @@ public class FoodRack {
     public static class Sandwich extends Food {
 
         public Sandwich(double weight, LocalDate bestBeforeDate) {
-            super("Sandwich", weight, bestBeforeDate);
+            super(weight, bestBeforeDate);
         }
     }
 
@@ -119,7 +119,7 @@ public class FoodRack {
     public static class Hotdog extends Food {
 
         public Hotdog(double weight, LocalDate bestBeforeDate) {
-            super("Hotdog", weight, bestBeforeDate);
+            super(weight, bestBeforeDate);
         }
     }
     
