@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package foodstore;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class FoodStore {
@@ -50,10 +51,7 @@ public class FoodStore {
                     System.out.println("\n");
                     
                     
-                    
-
                     int foodType;
-
                     do {
                         // FOOD TYPE
                         System.out.println("\n");
@@ -73,7 +71,7 @@ public class FoodStore {
                             }
                         } else {
                             System.out.println("\n");
-                            System.out.println("---->lease enter valid option----");
+                            System.out.println("---->Please enter valid option----");
 
                             scanner.next(); //Clean the scanner
                             foodType = 0;
@@ -81,9 +79,68 @@ public class FoodStore {
 
                     } while (foodType < 1 || foodType > 6);
                     
-                    if (foodType != 6){
-                        //Agregar elemento
-                    }
+                    if (foodType == 6) break;
+                    
+                    
+                    //Input weight
+                    double weight;
+
+                    do {
+                        System.out.println("\n");
+                        System.out.print("Enter food weight in grams: ");
+
+                        if (scanner.hasNextDouble()) {
+                            weight = scanner.nextDouble();
+
+                            if (weight <= 0) {
+                                System.out.println("\n");
+                                System.out.println("----> Weight must be greater than 0 <----");
+                                System.out.println("\n");
+                            }
+                            
+                        } else {
+                            System.out.println("\n");
+                            System.out.println("---->IPlease enter a valid number<----");
+                            System.out.println("\n");
+                            scanner.next();
+                            weight = 0;
+                        }
+
+                    } while (weight <= 0);
+                    
+                    
+                    
+                    //Input Date
+                    LocalDate bestBeforeDate = null;
+                    boolean validDate = false;
+
+                    do {
+                        System.out.print("Enter best before date (YYYY-MM-DD): ");
+                        String dateInput = scanner.next();
+
+                        try {
+                            bestBeforeDate = LocalDate.parse(dateInput);
+
+                            LocalDate today = LocalDate.now();
+
+                            if (bestBeforeDate.isBefore(today)) {
+                                System.out.println("Date cannot be in the past");
+
+                            } else if (bestBeforeDate.isAfter(today.plusDays(14))) {
+                                System.out.println("Date cannot exceed 14 days");
+
+                            } else {
+                                validDate = true;
+                            }
+
+                        } catch (java.time.format.DateTimeParseException e) {
+                            System.out.println("Invalid date format. Use YYYY-MM-DD.");
+                        }
+
+                    } while (!validDate);
+                    
+                    //agregar el elemeot a la lista
+                    myRack.AddFood(lf, foodType, weight, bestBeforeDate);
                     
                     break;
 

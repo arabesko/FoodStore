@@ -7,30 +7,26 @@ package foodstore;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FoodRack {
     
 
     // Featurs
     int max_capacity = 10; //Max capacity
-    Food[] storage; //storage will be food type
+    List<Food> storage= new ArrayList<Food>(); //storage will be food type
     public int count;
 
     // Constructor
     public FoodRack() {
-        storage = new Food[max_capacity];
         count = 0;
     }
     
-    public void AddFood(String lf){
-        if (count < storage.length - 1){
+    public void AddFood(String lf, int option, double weight, LocalDate dateFood){
+        if (storage.size() < 10){
             //Thay are more space for food
-            if (lf == "LIFO"){
-                //LIFO
-                
-            } else {
-                //FIFO
-                
-            }
+            storage.add(MyFood(option, weight, dateFood));
         }
         
     }
@@ -38,26 +34,14 @@ public class FoodRack {
     public void RemoveFood(String lf){
         if (count == 0){
             //Clean the element in index 0
-            if (lf == "LIFO"){
-                //LIFO
-                
-            } else {
-                //FIFO
-                
-            }
+            
         }
         
     }
     
     public void PickTopFood(String lf) {
         //Pick the top 10 element
-        if (lf == "LIFO"){
-                //LIFO
-                
-            } else {
-                //FIFO
-                
-            }
+        
     }
     
     Food MyFood(int myFoodOption, double weight, LocalDate dateFood){
