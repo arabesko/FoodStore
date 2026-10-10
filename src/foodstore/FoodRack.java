@@ -18,30 +18,44 @@ public class FoodRack {
     List<Food> storage= new ArrayList<Food>(); //storage will be food type
     public int count;
 
-    // Constructor
-    public FoodRack() {
-        count = 0;
-    }
-    
     public void AddFood(String lf, int option, double weight, LocalDate dateFood){
-        if (storage.size() < 10){
-            //Thay are more space for food
-            storage.add(MyFood(option, weight, dateFood));
-        }
-        
+        //Thay are more space for food
+        storage.add(MyFood(option, weight, dateFood));
     }
     
     public void RemoveFood(String lf){
-        if (count == 0){
-            //Clean the element in index 0
+        if ("LIFO".equals(lf)){
+            //Last in First Out
+            if (storage.size() == 0){
+                System.out.println("\n");
+                System.out.println("They are not elements in the storage");
+            } else {
+                storage.remove(storage.size() - 1);
+                System.out.println("se elimino el ultimo datos");
+            }
+            
+        } else {
+            //First in Fist Out
             
         }
-        
     }
     
-    public void PickTopFood(String lf) {
+    public Food PickAnyFood(String lf) {
         //Pick the top 10 element
+        if (storage.size() == 0) return null;
         
+        if ("LIFO".equals(lf)){
+            //Last in First Out
+            return storage.get(storage.size()-1);
+        } else {
+            //First in Fist Out
+            return storage.get(0);
+        }
+    }
+    
+    public boolean FullStore(){
+        if (storage.size() == max_capacity) return true;
+        return false;
     }
     
     Food MyFood(int myFoodOption, double weight, LocalDate dateFood){
@@ -71,7 +85,7 @@ public class FoodRack {
     public static class Burger extends Food {
 
         public Burger(double weight, LocalDate bestBeforeDate) {
-            super(weight, bestBeforeDate);
+            super("Burger", weight, bestBeforeDate);
         }
     }
 
@@ -79,7 +93,7 @@ public class FoodRack {
     public static class Pizza extends Food {
 
         public Pizza(double weight, LocalDate bestBeforeDate) {
-            super(weight, bestBeforeDate);
+            super("Pizza", weight, bestBeforeDate);
         }
     }
 
@@ -87,7 +101,7 @@ public class FoodRack {
     public static class Fries extends Food {
 
         public Fries(double weight, LocalDate bestBeforeDate) {
-            super(weight, bestBeforeDate);
+            super("Fries", weight, bestBeforeDate);
         }
     }
 
@@ -95,7 +109,7 @@ public class FoodRack {
     public static class Sandwich extends Food {
 
         public Sandwich(double weight, LocalDate bestBeforeDate) {
-            super(weight, bestBeforeDate);
+            super("Sandwich", weight, bestBeforeDate);
         }
     }
 
@@ -103,7 +117,7 @@ public class FoodRack {
     public static class Hotdog extends Food {
 
         public Hotdog(double weight, LocalDate bestBeforeDate) {
-            super(weight, bestBeforeDate);
+            super("Hotdog", weight, bestBeforeDate);
         }
     }
     

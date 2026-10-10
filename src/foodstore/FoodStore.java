@@ -50,6 +50,13 @@ public class FoodStore {
                     System.out.println("******************************");
                     System.out.println("\n");
                     
+                    //If the store is full 
+                    if (myRack.FullStore()){
+                       System.out.println("\n");
+                       System.out.println("The storage is full, operation cancelated"); 
+                       System.out.println("\n");
+                       break;
+                    }
                     
                     int foodType;
                     do {
@@ -151,8 +158,59 @@ public class FoodStore {
                     System.out.println("******************************");
                     System.out.println("******************************");
                     System.out.println("\n");
-                    break;
+                    
+                    System.out.println("\n===== Your current system is: " + lf + ")=====");
+                    System.out.println("\n");
+                    
+                    //Verify if the store have food
+                    if ( myRack.PickAnyFood(lf) == null){
+                        System.out.println("\n");
+                        System.out.println("They are not element in the store");
+                        break;
+                    }
+                    
+                    //Show the element that will be delete
+                    System.out.println("The element: " + 
+                    myRack.PickAnyFood(lf).foodName + " with " + 
+                    myRack.PickAnyFood(lf).foodWeight + "grs and the best before date: " + 
+                    myRack.PickAnyFood(lf).foodDate + " will be deleted");
+                    
+                    System.out.println("\n");
+                    System.out.println("Press 1-to continue or 2-to cancel");
+                    
+                    
+                    //Confirm to delete the item
+                    int confirm;
+                    do {
+                        System.out.println("\n");
+                        System.out.print("Enter your option (1 or 2): ");
 
+                        if (scanner.hasNextInt()) {
+                            confirm = scanner.nextInt();
+
+                            if (confirm != 1 && confirm != 2) {
+                                System.out.println("Invalid option. Please try again.");
+                            }
+
+                        } else {
+                            System.out.println("Invalid input. Please enter a number.");
+                            scanner.next();
+                            confirm = 0;
+                        }
+
+                    } while (confirm != 1 && confirm != 2);
+                    
+                    if (confirm == 1) {
+                        //Delete element
+                        myRack.RemoveFood(lf);
+                        System.out.println("The item was deleted");
+                    } else {
+                        //Cancel delete element
+                        System.out.println("Operation cancelled.");
+                    }
+
+                    break;
+                    
                 case 3:
                     System.out.println("Peek Top Food selected");
                     break;
