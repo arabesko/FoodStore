@@ -18,31 +18,29 @@ public class FoodRack {
     List<Food> storage= new ArrayList<Food>(); //storage will be food type
     public int count;
 
-    public void AddFood(String lf, int option, double weight, LocalDate dateFood){
+    public void AddFood(int option, double weight, LocalDate dateFood){
         //Thay are more space for food
         storage.add(MyFood(option, weight, dateFood));
     }
     
     public void RemoveFood(String lf){
-        if ("LIFO".equals(lf)){
-            //Last in First Out
-            if (storage.size() == 0){
-                System.out.println("\n");
-                System.out.println("They are not elements in the storage");
-            } else {
-                storage.remove(storage.size() - 1);
-                System.out.println("se elimino el ultimo datos");
-            }
-            
-        } else {
-            //First in Fist Out
-            
+        // Check if storage is empty
+        if (storage.isEmpty()) return;
+        
+        if ("LIFO".equals(lf)) {
+            // Last In, First Out
+            storage.remove(storage.size() - 1);
+        } else if ("FIFO".equals(lf)) {
+            // First In, First Out
+            storage.remove(0);
         }
     }
     
     public Food PickAnyFood(String lf) {
         //Pick the top 10 element
-        if (storage.size() == 0) return null;
+        if (storage.size() == 0) {
+            return null;
+        }
         
         if ("LIFO".equals(lf)){
             //Last in First Out
@@ -80,7 +78,8 @@ public class FoodRack {
     }
     
     
-    //Herencia
+    //Inheritance and Chield class
+    
     // Burger class
     public static class Burger extends Food {
 

@@ -20,22 +20,31 @@ public class FoodStore {
 
         do {
 
-            System.out.println("\n===== FOOD STORAGE SYSTEM (Current system: " + lf + ")=====");
+            System.out.println();
+            System.out.println("========================================");
+            System.out.println("          FOOD STORAGE SYSTEM");
+            System.out.println("========================================");
+            System.out.println("Current system: " + lf);
+            System.out.println("----------------------------------------");
             System.out.println("1. Add Food");
             System.out.println("2. Remove Food");
             System.out.println("3. Peek Top Food");
-            if (lf == "LIFO"){
-                System.out.println("4. Modify system (LIFO / FIFO), change to --> FIFO");
+
+            if ("LIFO".equals(lf)) {
+                System.out.println("4. Change System (to FIFO)");
             } else {
-                System.out.println("4. Modify system (LIFO / FIFO), change to --> LIFO");
+                System.out.println("4. Change System (to LIFO)");
             }
+
             System.out.println("5. Exit");
-            System.out.print("Select an option: ");
+            System.out.println("----------------------------------------");
+            System.out.print("Select an option (1-5): ");
 
             if (scanner.hasNextInt()) {
                 option = scanner.nextInt();
             } else {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println();
+                System.out.println("[ERROR] Please enter a valid number");
                 scanner.nextLine();
                 option = 0;
             }
@@ -43,12 +52,7 @@ public class FoodStore {
             switch (option) {
 
                 case 1:
-                    System.out.println("\n\n******************************");
-                    System.out.println("******************************");
-                    System.out.println("*******Add Food selected******");
-                    System.out.println("******************************");
-                    System.out.println("******************************");
-                    System.out.println("\n");
+                    //Add element to the storage
                     
                     //If the store is full 
                     if (myRack.FullStore()){
@@ -61,24 +65,29 @@ public class FoodStore {
                     int foodType;
                     do {
                         // FOOD TYPE
-                        System.out.println("\n");
+                        System.out.println("----------------------------------------");
+                        System.out.println("            SELECT FOOD TYPE");
+                        System.out.println("----------------------------------------");
                         System.out.println("1. Burger");
                         System.out.println("2. Pizza");
                         System.out.println("3. Fries");
                         System.out.println("4. Sandwich");
                         System.out.println("5. Hotdog");
-                        System.out.println("6. Exit");
-                        System.out.print("Select food type (1-6): ");
+                        System.out.println("6. CANCEL OPERATION");
+                        System.out.println("----------------------------------------");
+                        System.out.print("Select an option (1-6): ");
+                        
                         
                         if (scanner.hasNextInt()) {
                             foodType = scanner.nextInt();
                             if (foodType < 1 || foodType > 6) {
-                                System.out.println("\n");
-                                System.out.println("---->Invalid option. Please try again<----");
-                            }
+                                System.out.println();
+                                System.out.println("[ERROR] Invalid option. Please select 1-6");
+                                System.out.println();                            }
                         } else {
-                            System.out.println("\n");
-                            System.out.println("---->Please enter valid option----");
+                            System.out.println();
+                            System.out.println("[ERROR] Please enter a valid number.");
+                            System.out.println();
 
                             scanner.next(); //Clean the scanner
                             foodType = 0;
@@ -91,24 +100,28 @@ public class FoodStore {
                     
                     //Input weight
                     double weight;
+                    
+                    System.out.println();
+                    System.out.println("----------------------------------------");
+                    System.out.println("              FOOD WEIGHT");
+                    System.out.println("----------------------------------------");
 
                     do {
-                        System.out.println("\n");
                         System.out.print("Enter food weight in grams: ");
 
                         if (scanner.hasNextDouble()) {
                             weight = scanner.nextDouble();
 
                             if (weight <= 0) {
-                                System.out.println("\n");
-                                System.out.println("----> Weight must be greater than 0 <----");
-                                System.out.println("\n");
+                                System.out.println();
+                                System.out.println("[ERROR] Weight must be greater than 0");
+                                System.out.println();
                             }
                             
                         } else {
-                            System.out.println("\n");
-                            System.out.println("---->IPlease enter a valid number<----");
-                            System.out.println("\n");
+                            System.out.println();
+                            System.out.println("[ERROR] Please enter a valid number");
+                            System.out.println();
                             scanner.next();
                             weight = 0;
                         }
@@ -121,6 +134,11 @@ public class FoodStore {
                     LocalDate bestBeforeDate = null;
                     boolean validDate = false;
 
+                    System.out.println();
+                    System.out.println("----------------------------------------");
+                    System.out.println("            BEST BEFORE DATE");
+                    System.out.println("----------------------------------------");
+
                     do {
                         System.out.print("Enter best before date (YYYY-MM-DD): ");
                         String dateInput = scanner.next();
@@ -131,69 +149,92 @@ public class FoodStore {
                             LocalDate today = LocalDate.now();
 
                             if (bestBeforeDate.isBefore(today)) {
-                                System.out.println("Date cannot be in the past");
+                                System.out.println();
+                                System.out.println("[ERROR] Date cannot be in the past.");
+                                System.out.println();
+
 
                             } else if (bestBeforeDate.isAfter(today.plusDays(14))) {
-                                System.out.println("Date cannot exceed 14 days");
+                                System.out.println();
+                                System.out.println("[ERROR] Date cannot exceed 14 days.");
+                                System.out.println();
 
                             } else {
                                 validDate = true;
                             }
 
                         } catch (java.time.format.DateTimeParseException e) {
-                            System.out.println("Invalid date format. Use YYYY-MM-DD.");
+                            System.out.println();
+                            System.out.println("[ERROR] Invalid date. Use YYYY-MM-DD.");
+                            System.out.println();
                         }
 
                     } while (!validDate);
                     
-                    //agregar el elemeot a la lista
-                    myRack.AddFood(lf, foodType, weight, bestBeforeDate);
-                    
+                    //Ellement added
+                    myRack.AddFood(foodType, weight, bestBeforeDate);
+                    System.out.println();
+                    System.out.println("[SUCCESS] Food added successfully.");
+
                     break;
 
                 case 2:
-                    System.out.println("\n\n******************************");
-                    System.out.println("******************************");
-                    System.out.println("*****Remove Food selected*****");
-                    System.out.println("******************************");
-                    System.out.println("******************************");
-                    System.out.println("\n");
+                    //Felete element of the storage
                     
-                    System.out.println("\n===== Your current system is: " + lf + ")=====");
-                    System.out.println("\n");
+                    System.out.println();
+                    System.out.println("========================================");
+                    System.out.println("              REMOVE FOOD");
+                    System.out.println("========================================");
+                    System.out.println();
+                    
+                    System.out.println("----------------------------------------");
+                    System.out.println("Current system: " + lf);
+                    System.out.println("----------------------------------------");
+                    System.out.println();
                     
                     //Verify if the store have food
                     if ( myRack.PickAnyFood(lf) == null){
-                        System.out.println("\n");
-                        System.out.println("They are not element in the store");
+                        System.out.println("[WARNING] Storage is empty");
+                        System.out.println("[CANCELLED] No food available to remove");
                         break;
                     }
                     
                     //Show the element that will be delete
-                    System.out.println("The element: " + 
-                    myRack.PickAnyFood(lf).foodName + " with " + 
-                    myRack.PickAnyFood(lf).foodWeight + "grs and the best before date: " + 
-                    myRack.PickAnyFood(lf).foodDate + " will be deleted");
+                    System.out.println("----------------------------------------");
+                    System.out.println("           FOOD TO BE REMOVED");
+                    System.out.println("----------------------------------------");
+                    System.out.println("Name         : " + myRack.PickAnyFood(lf).foodName);
+                    System.out.println("Weight       : " + myRack.PickAnyFood(lf).foodWeight + " gr");
+                    System.out.println("Best Before  : " + myRack.PickAnyFood(lf).foodDate);
+                    System.out.println("----------------------------------------");
+                    System.out.println();
                     
-                    System.out.println("\n");
-                    System.out.println("Press 1-to continue or 2-to cancel");
+                    // Confirmation options
+                    System.out.println("1. Confirm removal");
+                    System.out.println("2. Cancel");
+                    System.out.println("----------------------------------------");
                     
                     
                     //Confirm to delete the item
                     int confirm;
                     do {
                         System.out.println("\n");
-                        System.out.print("Enter your option (1 or 2): ");
+                        System.out.print("Select an option (1-2): ");
 
                         if (scanner.hasNextInt()) {
                             confirm = scanner.nextInt();
 
                             if (confirm != 1 && confirm != 2) {
-                                System.out.println("Invalid option. Please try again.");
+                                System.out.println();
+                                System.out.println("[ERROR] Invalid option. Please select 1-2.");
+                                System.out.println();
                             }
 
                         } else {
-                            System.out.println("Invalid input. Please enter a number.");
+                            System.out.println();
+                            System.out.println("[ERROR] Please enter a valid number.");
+                            System.out.println();
+                            
                             scanner.next();
                             confirm = 0;
                         }
@@ -203,33 +244,91 @@ public class FoodStore {
                     if (confirm == 1) {
                         //Delete element
                         myRack.RemoveFood(lf);
-                        System.out.println("The item was deleted");
+                        
+                        System.out.println();
+                        System.out.println("[SUCCESS] Food removed successfully.");
                     } else {
                         //Cancel delete element
-                        System.out.println("Operation cancelled.");
+                        System.out.println();
+                        System.out.println("[CANCELLED] Operation cancelled.");
                     }
 
                     break;
                     
                 case 3:
-                    System.out.println("Peek Top Food selected");
+                    //Pick the top element
+                    
+                    System.out.println();
+                    System.out.println("========================================");
+                    System.out.println("             PEEK TOP FOOD");
+                    System.out.println("========================================");
+                    System.out.println();
+                    
+                    //Verify if the store have food
+                    if (myRack.PickAnyFood(lf) == null){
+                        System.out.println("[WARNING] Storage is empty");
+                        System.out.println("No food available to display");
+                        break;
+                    }
+                    
+                    //Show the element on the top
+                    System.out.println("The element on the top is: " + "\n" +
+                    myRack.PickAnyFood(lf).foodName + " with " + 
+                    myRack.PickAnyFood(lf).foodWeight + "grs and the best before date: " +
+                    myRack.PickAnyFood(lf).foodDate);
+                    
+                    System.out.println("----------------------------------------");
+                    System.out.println("             TOP FOOD DETAILS");
+                    System.out.println("----------------------------------------");
+                    System.out.println("Current system: " + lf);
+                    System.out.println();
+                    System.out.println("Name         : " + myRack.PickAnyFood(lf).foodName);
+                    System.out.println("Weight       : " + myRack.PickAnyFood(lf).foodWeight + " gr");
+                    System.out.println("Best Before  : " + myRack.PickAnyFood(lf).foodWeight);
+                    System.out.println("Time Added   : " + myRack.PickAnyFood(lf).foodDate);
+                    System.out.println("----------------------------------------");
+                    
                     break;
 
                 case 4:
-                    System.out.println("Modify system selected");
+                    //Change between LIFO/FIFO
+                    
+                    System.out.println();
+                    System.out.println("========================================");
+                    System.out.println("             CHANGE SYSTEM");
+                    System.out.println("========================================");
+                    System.out.println();
+                    
+                    System.out.println("Previous system: " + lf);
+                    
                     if (lf == "LIFO"){
                         lf = "FIFO";
                     } else {
                         lf = "LIFO";
                     }
+                    
+                    System.out.println("Current system : " + lf);
+                    System.out.println("----------------------------------------");
+                    System.out.println("[SUCCESS] System changed successfully.");
+                    
                     break;
 
                 case 5:
-                    System.out.println("Exit");
-                    break;
+                    //Exit of the system
                     
+                    System.out.println();
+                    System.out.println("========================================");
+                    System.out.println("              EXIT SYSTEM");
+                    System.out.println("========================================");
+                    System.out.println();
+                    System.out.println("           Food Storage System           ");
+                    System.out.println("            See you soon..!              ");
+                    System.out.println();
+                    System.out.println("----------------------------------------");
+                    break;
                 default:
-                    System.out.println("Invalid option. Please try again");
+                    System.out.println();
+                    System.out.println("[ERROR] Invalid option. Please select 1-5.");
                     break;
             }
 
@@ -237,5 +336,4 @@ public class FoodStore {
 
         scanner.close();
     }
-    
 }
