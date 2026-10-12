@@ -36,9 +36,10 @@ public class FoodStore {
                 System.out.println("4. Change System (to LIFO)");
             }
 
-            System.out.println("5. Exit");
+            System.out.println("5. Display all elements");
+            System.out.println("6. Exit");
             System.out.println("----------------------------------------");
-            System.out.print("Select an option (1-5): ");
+            System.out.print("Select an option (1-6): ");
 
             if (scanner.hasNextInt()) {
                 option = scanner.nextInt();
@@ -312,8 +313,51 @@ public class FoodStore {
                     System.out.println("[SUCCESS] System changed successfully.");
                     
                     break;
-
+       
                 case 5:
+                    //Display all elements in the rack
+                    if (myRack.storage.size() == 0) {
+                        System.out.println("[WARNING] The food rack is empty.");
+                        break;
+                    }
+
+                    System.out.println();
+                    System.out.println("======================================================================");
+                    System.out.println("                         FOOD RACK - " + lf);
+                    System.out.println("======================================================================");
+
+                    System.out.printf("%-7s %-15s %-12s %-15s %s%n",
+                            "Index", "Food", "Weight (g)", "Expiry Date", "Element to pick");
+
+                    System.out.println("----------------------------------------------------------------------");
+
+                    for (int i = 0; i < myRack.storage.size(); i++) {
+
+                        Food food = myRack.storage.get(i);
+
+                        String nextToPick = "";
+
+                        // Identify the next food to be removed
+                        if ("LIFO".equals(lf) && i == myRack.storage.size() - 1) {
+                            nextToPick = "<-- NEXT  TO PICK";
+                        } else if ("FIFO".equals(lf) && i == 0) {
+                            nextToPick = "<-- NEXT TO PICK";
+                        }
+
+                        System.out.printf("%-7d %-15s %-12.2f %-15s %s%n",
+                                i + 1,
+                                food.foodName,
+                                food.foodWeight,
+                                food.foodDate,
+                                nextToPick);
+                    }
+
+                    System.out.println("----------------------------------------------------------------------");
+                    System.out.println("Total: " + myRack.storage.size() + " / " + myRack.max_capacity);
+                    System.out.println("======================================================================");
+                    break;
+
+                 case 6:
                     //Exit of the system
                     
                     System.out.println();
@@ -325,14 +369,15 @@ public class FoodStore {
                     System.out.println("            See you soon..!              ");
                     System.out.println();
                     System.out.println("----------------------------------------");
-                    break;
+                    break;   
+                    
                 default:
                     System.out.println();
-                    System.out.println("[ERROR] Invalid option. Please select 1-5.");
+                    System.out.println("[ERROR] Invalid option. Please select 1-6.");
                     break;
             }
 
-        } while (option != 5);
+        } while (option != 6);
 
         scanner.close();
     }

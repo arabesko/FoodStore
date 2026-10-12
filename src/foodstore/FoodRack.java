@@ -15,7 +15,7 @@ public class FoodRack {
 
     // Featurs
     int max_capacity = 10; //Max capacity
-    List<Food> storage= new ArrayList<Food>(); //storage will be food type
+    public List<Food> storage= new ArrayList<Food>(); //storage will be food type
     public int count;
 
     public void AddFood(int option, double weight, LocalDate dateFood){
