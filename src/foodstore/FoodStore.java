@@ -273,11 +273,6 @@ public class FoodStore {
                     }
                     
                     //Show the element on the top
-                    System.out.println("The element on the top is: " + "\n" +
-                    myRack.PickAnyFood(lf).foodName + " with " + 
-                    myRack.PickAnyFood(lf).foodWeight + "grs and the best before date: " +
-                    myRack.PickAnyFood(lf).foodDate);
-                    
                     System.out.println("----------------------------------------");
                     System.out.println("             TOP FOOD DETAILS");
                     System.out.println("----------------------------------------");
