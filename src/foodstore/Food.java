@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Food {
     //Father Clas
     
-    // Attributes
+    // Variables
     protected String foodName;
     protected double foodWeight;
     protected LocalDate foodDate;

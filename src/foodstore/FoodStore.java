@@ -87,7 +87,7 @@ public class FoodStore {
                                 System.out.println();                            }
                         } else {
                             System.out.println();
-                            System.out.println("[ERROR] Please enter a valid number.");
+                            System.out.println("[ERROR] Please enter a valid number");
                             System.out.println();
 
                             scanner.next(); //Clean the scanner
@@ -151,13 +151,13 @@ public class FoodStore {
 
                             if (bestBeforeDate.isBefore(today)) {
                                 System.out.println();
-                                System.out.println("[ERROR] Date cannot be in the past.");
+                                System.out.println("[ERROR] Date cannot be in the past");
                                 System.out.println();
 
 
                             } else if (bestBeforeDate.isAfter(today.plusDays(14))) {
                                 System.out.println();
-                                System.out.println("[ERROR] Date cannot exceed 14 days.");
+                                System.out.println("[ERROR] Date cannot exceed 14 days");
                                 System.out.println();
 
                             } else {
@@ -166,7 +166,7 @@ public class FoodStore {
 
                         } catch (java.time.format.DateTimeParseException e) {
                             System.out.println();
-                            System.out.println("[ERROR] Invalid date. Use YYYY-MM-DD.");
+                            System.out.println("[ERROR] Invalid date. Use YYYY-MM-DD");
                             System.out.println();
                         }
 
@@ -175,7 +175,7 @@ public class FoodStore {
                     //Ellement added
                     myRack.AddFood(foodType, weight, bestBeforeDate);
                     System.out.println();
-                    System.out.println("[SUCCESS] Food added successfully.");
+                    System.out.println("[SUCCESS] Food added successfully");
 
                     break;
 
@@ -227,13 +227,13 @@ public class FoodStore {
 
                             if (confirm != 1 && confirm != 2) {
                                 System.out.println();
-                                System.out.println("[ERROR] Invalid option. Please select 1-2.");
+                                System.out.println("[ERROR] Invalid option. Please select 1-2");
                                 System.out.println();
                             }
 
                         } else {
                             System.out.println();
-                            System.out.println("[ERROR] Please enter a valid number.");
+                            System.out.println("[ERROR] Please enter a valid number");
                             System.out.println();
                             
                             scanner.next();
@@ -247,11 +247,11 @@ public class FoodStore {
                         myRack.RemoveFood(lf);
                         
                         System.out.println();
-                        System.out.println("[SUCCESS] Food removed successfully.");
+                        System.out.println("[SUCCESS] Food removed successfully");
                     } else {
                         //Cancel delete element
                         System.out.println();
-                        System.out.println("[CANCELLED] Operation cancelled.");
+                        System.out.println("[CANCELLED] Operation cancelled");
                     }
 
                     break;
@@ -305,7 +305,7 @@ public class FoodStore {
                     
                     System.out.println("Current system : " + lf);
                     System.out.println("----------------------------------------");
-                    System.out.println("[SUCCESS] System changed successfully.");
+                    System.out.println("[SUCCESS] System changed successfully");
                     
                     break;
        
@@ -368,7 +368,7 @@ public class FoodStore {
                     
                 default:
                     System.out.println();
-                    System.out.println("[ERROR] Invalid option. Please select 1-6.");
+                    System.out.println("[ERROR] Invalid option. Please select 1-6");
                     break;
             }
 
